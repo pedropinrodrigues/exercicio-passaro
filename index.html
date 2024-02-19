@@ -74,6 +74,8 @@
         });
 
         passarinho.anims.play('fly', true);
+
+        passarinho.subida = false;
     }
 
     function update() { 
@@ -103,35 +105,46 @@
         //Movimento do pássaro no eixo Y
         //Ao fazer o movimetno no eixo Y, eu tive dúvidas sobre como conseguir fazer com que o passarinho se movimentasse pela tela toda, levando em conta que seu ponto inicial era 300. Por isso alterei seu ponto inicial para 100, e só assim pude fazer ele subir e descer em toda interface.
         
-        if (passarinho.y === 100) {
-        passarinho.subida = true;
-        }
-        if (passarinho.y < 500 && passarinho.subida === true) {
-            passarinho.y += 5;
-        }
+        //A minha tentativa de fazer o movimento de Y usando "While".
 
-        if (passarinho.y === 500) {
+      
+        while (passarinho.y >= 100 && passarinho.subida === false){
+            if (passarinho.y === 500){
+             passarinho.subida = true;
+            }else{
+                passarinho.y += 5;
+            }
+            break;
+        }  
+
+        while (passarinho.y <= 500 && passarinho.subida === true){
+            if (passarinho.y === 100){
             passarinho.subida = false;
+            }else{
+                passarinho.y -= 5;
+            }
+            break;
         }
 
-        if (passarinho.y > 100 && passarinho.subida === false) {
-            passarinho.y -= 5;
-        }
 
-        //A minha tentativa (falha) de fazer o movimento de Y usando "While".
+        //Como eu fiz usando 'if'.
 
-        /* if (passarinho.y === 100){
+        /* if (passarinho.y === 100) {
             passarinho.subida = true;
-        }
-        while (passarinho.y < 500 && passarinho.subida === true){
-            passarinho.y += 5;
-        }
-        if (passarinho.y === 500){
-            passarinho.subida = false;
-        }
-        while (passarinho.y > 100 && passarinho.subida === false){
-            passarinho.subida += 5;
-        }  */
+            }
+            if (passarinho.y < 500 && passarinho.subida === true) {
+                passarinho.y += 5;
+             }
+
+            if (passarinho.y === 500) {
+                passarinho.subida = false;
+            }
+
+            if (passarinho.y > 100 && passarinho.subida === false) {
+                passarinho.y -= 5;
+            }*/
+
+
     }
 
 </script>
